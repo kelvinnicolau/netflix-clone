@@ -9,6 +9,12 @@ export default ({iten}) => {
         genres.push(iten.genres[i].name);
     }
 
+    let description = iten.overview;
+
+    if(description.length > 200){
+        description = description.substring(0, 200) + "...";
+    }
+
     return (
         <section className="featured"
             style={{
@@ -25,7 +31,7 @@ export default ({iten}) => {
                         <div className='featured--seasons'>{iten.number_of_seasons} temporada{iten.number_of_seasons !== 1 ? 's' : ''}</div>
                     </div>
 
-                    <div className='featured--description'>{iten.overview}</div>
+                    <div className='featured--description'>{description}</div>
                     <div className='featured--buttons'>
                         <a className='featured--watchbutton' href={`/watch/${iten.id}`}>Assistir</a>
                         <a className='featured--mylistbutton' href={`/list/add/${iten.id}`}>+ Minha Lista</a>
